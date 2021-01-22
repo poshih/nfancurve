@@ -279,7 +279,7 @@ if [ "$num_gpus" -eq "1" ] && [ "$num_fans" -eq "1" ]; then
 		sleep "$sleep_time"
 	done
 else
-	prf "Started process for n-GPUs and n-Fans"
+	prf "Started process for $num_gpus-GPUs and $num_fans_loop-Fans"
 	while true; do
 		fan=0
 		while [ "$fan" -le "$num_fans_loop" ]; do
