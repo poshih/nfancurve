@@ -226,7 +226,7 @@ if [ -z "$num_fans" ]; then
 	prf "No Fans detected"; exit 1
 elif [ "${#num_fans}" -gt "2" ]; then
 	num_fans="${num_fans%* Fans on*}"
-	num_fans_loop="$((num_fans-1))"
+	num_fans_loop="$((num_fans))"
 fi
 prf "Number of Fans detected: $num_fans"
 num_gpus=$(get_query "gpus"); num_gpus="${num_gpus%* GPU on*}"
