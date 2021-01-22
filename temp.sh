@@ -82,10 +82,11 @@ set_fan_control() {
 	done
 }
 set_speed() {
-	$gpu_cmd -a [fan:"$fan"]/GPUTargetFanSpeed="$cur_spd" $display
-	$gpu_cmd -a [fan:1]/GPUTargetFanSpeed="$cur_spd" $display
-	hackExtrafan=$fan+1
-	$gpu_cmd -a [fan:"$hackExtrafan"]/GPUTargetFanSpeed="$cur_spd" $display
+	i=0
+	while [ "$i" -le "$1" ]; do
+		$gpu_cmd -a [fan:"$i"]/GPUTargetFanSpeed="$cur_spd" $display
+		i=$((i+1))
+	done	
 }
 finish() {
 	set_fan_control "$num_gpus_loop" "0"
@@ -144,7 +145,7 @@ loop_cmds() {
 			fi
 			if [ "$new_spd" -ne "$cur_spd" ]; then
 				cur_spd="$new_spd"
-				set_speed
+				set_speed "$num_fans"
 				i=0
 				tmp="$old_s"; old_s=""
 				for elem in $tmp; do
