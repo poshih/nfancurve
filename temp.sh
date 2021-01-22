@@ -83,6 +83,7 @@ set_fan_control() {
 }
 set_speed() {
 	$gpu_cmd -a [fan:"$fan"]/GPUTargetFanSpeed="$cur_spd" $display
+	$gpu_cmd -a [fan:1]/GPUTargetFanSpeed="$cur_spd" $display
 	hackExtrafan=$fan+1
 	$gpu_cmd -a [fan:"$hackExtrafan"]/GPUTargetFanSpeed="$cur_spd" $display
 }
