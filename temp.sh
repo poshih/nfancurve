@@ -285,20 +285,14 @@ if [ "$num_gpus" -eq "1" ] && [ "$num_fans" -eq "1" ]; then
 else
 	prf "Started process for $num_gpus-GPUs and $num_fans_loop-Fans"
 	while true; do
-		gpuloopcount=0
-		while [ "$gpuloopcount" -le "$num_gpus_loop" ]; do
-			fan=0
-			while [ "$fan" -le "$num_fans_loop" ]; do
-				set_stuff
-				arr="$old_t"; n="$fan"; re_elem; ot="$elem"
-				arr="$old_s"; n="$fan"; re_elem; cur_spd="$elem"
-				loop_cmds
-				fan=$((fan+1))
-			done
-			gpuloopcount=$((gpuloopcount+1))
+		fan=0
+		while [ "$fan" -le "$num_fans_loop" ]; do
+			set_stuff
+			arr="$old_t"; n="$fan"; re_elem; ot="$elem"
+			arr="$old_s"; n="$fan"; re_elem; cur_spd="$elem"
+			loop_cmds
+			fan=$((fan+1))
 		done
-		
-		
 		sleep "$sleep_time"
 	done
 fi
